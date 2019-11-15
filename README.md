@@ -29,5 +29,5 @@ curl -i http://<WEB service IP adres>:5000/AM43BlindsAction/Open
 Have fun with it :-)
 -Bas
 
-Blind drivers I have bought (Ask for an EU power adapter when you need to):
+PS: Blind drivers I have bought (Ask for an EU power adapter when you need to):
 https://nl.aliexpress.com/item/4000025499519
