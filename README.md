@@ -17,7 +17,7 @@ The byte string to look for is:
 
 The last byte seems a checksum which I havent figured out yet.
 
-Created a simple python script with a Flask Webservice which you can provide a "Open" (0%) or Close (100%) command so you can give youre Home Automation access to them. BLE seems not to reliable so I had to write some more code for fault handling
+Created a simple python script with a Flask Webservice which you can provide a "Open" (0%) or Close (100%) command so you can give youre Home Automation access to them. BLE seems not too reliable so I had to write some more code for fault handling
 
 HTTP Get commands:
 
