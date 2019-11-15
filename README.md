@@ -21,9 +21,9 @@ Created a simple python script with a Flask Webservice which you can provide a "
 
 HTTP Get commands:
 
-curl -i http://<WEB service IP adres>:5000/AM43BlindsAction/Close
+curl -i http://WEB_service_IP_address:5000/AM43BlindsAction/Close
   
-curl -i http://<WEB service IP adres>:5000/AM43BlindsAction/Open
+curl -i http://WEB_service_IP_address:5000/AM43BlindsAction/Open
 
 
 Have fun with it :-)
