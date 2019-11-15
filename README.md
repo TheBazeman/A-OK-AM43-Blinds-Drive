@@ -20,8 +20,11 @@ The last byte seems a checksum which I havent figured out yet.
 Created a simple python script with a Flask Webservice which you can provide a "Open" (0%) or Close (100%) command so you can give youre Home Automation access to them. BLE seems not to reliable so I had to write some more code for fault handling
 
 HTTP Get commands:
+
 curl -i http://<WEB service IP adres>:5000/AM43BlindsAction/Close
+  
 curl -i http://<WEB service IP adres>:5000/AM43BlindsAction/Open
+
 
 Have fun with it :-)
 -Bas
