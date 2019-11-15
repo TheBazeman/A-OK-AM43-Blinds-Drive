@@ -6,9 +6,13 @@ Configure the AM43 Blinds Drive with the app on your phone. Make sure you set th
 This python3 script only provides an Open and Close command. That's what I have debugged on Bluetooth and is enough for me (now). If somebody can provide me with the byte array for other percentages than 0% or 100% I encourage them to deliver it to me.
 
 The byte string to look for is:
+
 [Service UUID: (0xfe50)]
+
 --->    [Characteristic UUID: (0xfe51)]
+
 --------->  100% close command = 00ff00009a0d0164f2  --> 64 byte/hex = 100
+
 --------->  0% close command   = 00ff00009a0d010096  --> 00 byte/hex = 0
 
 The last byte seems a checksum which I havent figured out yet.
@@ -24,4 +28,3 @@ Have fun with it :-)
 
 Blind drivers I have bought (Ask for an EU power adapter when you need to):
 https://nl.aliexpress.com/item/4000025499519
-v
