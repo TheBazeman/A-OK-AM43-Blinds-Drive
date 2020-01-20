@@ -7,7 +7,7 @@ This python3 script only provides an Open and Close command. That's what I have 
 
 To run BTLE scanning which is done with this script, you need elevated rights. So when it fails, look at that.
 
-I have created a service for it with the following:
+I have created a service for it with the following:<\n>
 sudo tee -a /lib/systemd/system/AOK-AM43.service <<_EOF_
 [Unit]
 Description = AOK-AM43 Web service
@@ -61,5 +61,5 @@ curl -i http://WEB_service_IP_address:5000/AM43BlindsAction/Open
 Have fun with it :-)
 -Bas
 
-PS: Blind drivers I have bought (Ask for an EU power adapter when you need to):
+PS: Blinds drivers I have bought (Ask for an EU power adapter when you need to):
 https://nl.aliexpress.com/item/4000025499519
