@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-#pip3 install Flask, bluepy, retrying
-# Version 0.1 - Bas Bahlmann - The Netherlands
+# To install libraries needed:
+# sudo pip3 install Flask, bluepy, retrying
+# Version 1.0 - Bas Bahlmann - The Netherlands
 
 #curl -i http://localhost:5000/AM43BlindsAction/Close
 #curl -i http://localhost:5000/AM43BlindsAction/Open
