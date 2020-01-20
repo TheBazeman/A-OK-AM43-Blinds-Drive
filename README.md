@@ -1,4 +1,4 @@
-# AM43-Blinds-Drive
+# Python A-OK-AM43-Blinds-Drive
 A-OK AM43 Blinds Drive BLE control from a Raspberry Pi
 
 Configure the AM43 Blinds Drive with the app on your phone. Make sure you set the beginning (0%) and endpoint (100%).
