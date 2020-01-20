@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #pip3 install Flask, bluepy, retrying
-# Version 0.1 - Bas Bahlmann
+# Version 0.1 - Bas Bahlmann - The Netherlands
 
 #curl -i http://localhost:5000/AM43BlindsAction/Close
 #curl -i http://localhost:5000/AM43BlindsAction/Open
@@ -24,18 +24,23 @@ def ScanForBTLEDevices():
     print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Scanning for bluetooth devices....", flush=True)
     devices = scanner.scan()
 
-    bFound = False
+    bAllDevicesFound = True
     for AM43BlindsDevice in config['AM43_BLE_Devices']:
         AM43BlindsDeviceMacAddress = config.get('AM43_BLE_Devices', AM43BlindsDevice)  # Read BLE MAC from ini file
-   
+        
+        bFound = False
         for dev in devices:
             if (AM43BlindsDeviceMacAddress == dev.addr):
-                print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Found " + AM43BlindsDeviceMacAddress + "!", flush=True)
+                print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Found " + AM43BlindsDeviceMacAddress, flush=True)
                 bFound = True
                 break
-            else: 
-                bFound = False
-    if (bFound == True):
+            #else: 
+                #bFound = False
+        if bFound == False:
+            print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " " + AM43BlindsDeviceMacAddress + " not found on BTLE network!", flush=True)
+            bAllDevicesFound = False
+        
+    if (bAllDevicesFound == True):
         print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Every AM43 Blinds Controller is found on BTLE network", flush=True)
         return
     else:
@@ -43,14 +48,11 @@ def ScanForBTLEDevices():
         os.system("service bluetooth restart")
         raise ValueError(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Not all AM43 Blinds Controllers are found on BTLE network, restarting bluetooth stack and check again....")
 
-    #print("Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi))
-    #for (adtype, desc, value) in dev.getScanData():
-        #print("  %s = %s" % (desc, value))
 
-
-@retry(stop_max_attempt_number=5,wait_fixed=2000)
+@retry(stop_max_attempt_number=3,wait_fixed=2000)
 def ConnectBTLEDevice(AM43BlindsDeviceMacAddress):        
     try:
+        print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Connecting to " + AM43BlindsDeviceMacAddress + "...", flush=True)
         dev = btle.Peripheral(AM43BlindsDeviceMacAddress)
         return dev
     except:
@@ -69,28 +71,29 @@ def AM43BlindsAction(BlindsAction):
     CloseBlinds = b"\x00\xff\x00\x00\x9a\x0d\x01\x64\xf2"
 
     #Code#
+    # Scan for BTLE devices
     try:
         ScanForBTLEDevices()
     except:
-        return "ERROR SCANNINF FOR BTLE Devices\n"
+        print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " ERROR SCANNING FOR ALL BTLE Devices, trying to " + BlindsAction + " the blinds anyway....", flush=True)
+        print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Please check any open connections to the blinds motor and close them, the Blinds Engine App perhaps?", flush=True)
+        pass
+        #return "ERROR SCANNING FOR ALL BTLE Devices\n"
     
     for AM43BlindsDevice in config['AM43_BLE_Devices']:
         bSuccess = False
         AM43BlindsDeviceMacAddress = config.get('AM43_BLE_Devices', AM43BlindsDevice)  # Read BLE MAC from ini file
-        print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Connecting to " + AM43BlindsDeviceMacAddress + "...", flush=True)
         try:
-            #dev = btle.Peripheral(AM43BlindsDeviceMacAddress)
             dev = ConnectBTLEDevice(AM43BlindsDeviceMacAddress)
         except:
-            return "ERROR, Cannot connect to " + AM43BlindsDeviceMacAddress + "\n"
+            print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " ERROR, Cannot connect to " + AM43BlindsDeviceMacAddress, flush=True)
+            continue
         
         print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " --> Connected to " + dev.addr, flush=True)
-        #print("Get device service fe50...")
+
         BlindsControlService = dev.getServiceByUUID("fe50")
         if (BlindsControlService):
-            #print("Get device Characteristic fe51...")
             BlindsControlServiceCharacteristic = BlindsControlService.getCharacteristics("fe51")[0]
-            #print("Writing to " + str(BlindsControlServiceCharacteristic) + "...")
             if (BlindsAction == "Open"):
                 result = BlindsControlServiceCharacteristic.write(OpenBlinds)
             elif (BlindsAction == "Close"):
@@ -106,6 +109,9 @@ def AM43BlindsAction(BlindsAction):
             else:
                 print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " --> Writing to " + AM43BlindsDevice + " FAILED", flush=True)
                 bSuccess = False
+        # Close connection to BLE device
+        dev.disconnect()
+        
     if (bSuccess):
         return "OK\n"
     else:
