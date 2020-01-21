@@ -62,5 +62,6 @@ Have fun with it :-)
 -Bas
 
 PS: Blinds drivers I have bought (Ask for an EU power adapter when you need to):
+
 https://nl.aliexpress.com/item/4000025499519.html
 
