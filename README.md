@@ -7,7 +7,7 @@ This python3 script only provides an Open and Close command. That's what I have 
 
 To run BTLE scanning which is done with this script, you need elevated rights. So when it fails, look at that.
 
-I have created a service for it with the following:
+I have created a service for it with the following (use the raw view to copy):
 sudo tee -a /lib/systemd/system/AOK-AM43.service <<_EOF_
 [Unit]
 Description = AOK-AM43 Web service
