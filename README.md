@@ -5,7 +5,7 @@ Configure the AM43 Blinds Drive with the app on your phone. Make sure you set th
 
 This python3 script only provides an Open and Close command. That's what I have debugged on Bluetooth and is enough for me (now). If somebody can provide me with the byte array for other percentages than 0% or 100% I encourage them to deliver it to me.
 
-Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the parameter in the script.
+Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the "config.read('//A-OK_AM43_Blind_Drive//AOK-AM43.ini')" parameter in the script and the path below service file. Otherwise it cannot find the ini file with your blind mac address(es) and the service wont start.
 
 To run BTLE scanning which is done with this script, you need elevated rights. So when it fails, look at that.
 
