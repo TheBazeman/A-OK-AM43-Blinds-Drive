@@ -1,5 +1,5 @@
 # Python A-OK AM43 Blinds Motor Control
-A-OK AM43 Blinds Drive BTLE control from a Raspberry Pi
+A-OK AM43 Blinds Drive BTLE control from a Raspberry Pi (Zero W)
 
 Configure the AM43 Blinds Drive with the app on your phone. Make sure you set the beginning (0%) and endpoint (100%).
 
