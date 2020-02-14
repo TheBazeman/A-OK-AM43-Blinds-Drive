@@ -65,3 +65,5 @@ PS: Blinds drivers I have bought (Ask for an EU power adapter when you need to):
 
 https://nl.aliexpress.com/item/4000025499519.html
 
+
+-Special thanks to Richard Taylor for providing me several pieces of code to get to this-
