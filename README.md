@@ -38,12 +38,14 @@ To Do list (time is not my best friend, so be patient please):
 
 Created a simple python script with a Flask Webservice which you can provide a <number 0-100> (set percentage yourself), "Open" (0%), Close (100%) or CheckStatus command so you can give youre Home Automation access to them. BLE seems not too reliable so I had to write some more code for fault handling.
 
+
 HTTP Get commands:
 
-curl -i http://localhost:5000/AM43BlindsAction/<Action>  --> For the default setup
+curl -i http://localhost:5000/AM43BlindsAction/"Action"  --> For the default setup
   
-curl -i http://localhost:5000/AM43BlindsAction/<Action>/<DeviceGroup>  --> For the devicegroup setup you can specify in the ini file
-  
+curl -i http://localhost:5000/AM43BlindsAction/"Action"/"DeviceGroup"  --> For the devicegroup setup you can specify in the ini file
+
+
 "Action" options:
 
   number 0-100      --> Set blinds to position wanted
@@ -53,6 +55,7 @@ curl -i http://localhost:5000/AM43BlindsAction/<Action>/<DeviceGroup>  --> For t
   Close             --> Closing blinds
   
   CheckStatus       --> Get battery status, current position and light in %
+
 
 
 Have fun with it :-)
