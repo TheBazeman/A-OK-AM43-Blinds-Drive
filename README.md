@@ -40,20 +40,19 @@ Created a simple python script with a Flask Webservice which you can provide a <
 
 HTTP Get commands:
 
-#curl -i http://localhost:5000/AM43BlindsAction/<Action>  --> For the default setup
+curl -i http://localhost:5000/AM43BlindsAction/<Action>  --> For the default setup
   
-#curl -i http://localhost:5000/AM43BlindsAction/<Action>/<DeviceGroup>  --> For the devicegroup setup you can specify in the ini file
+curl -i http://localhost:5000/AM43BlindsAction/<Action>/<DeviceGroup>  --> For the devicegroup setup you can specify in the ini file
   
+"Action" options:
 
-#<Action> options:
+  number 0-100      --> Set blinds to position wanted
   
-# <number 0-100>    --> Set blinds to position wanted
-
-# Open              --> Opening blinds
-
-# Close             --> Closing blinds
-
-# CheckStatus       --> Get battery status, current position and light in %
+  Open              --> Opening blinds
+  
+  Close             --> Closing blinds
+  
+  CheckStatus       --> Get battery status, current position and light in %
 
 
 Have fun with it :-)
