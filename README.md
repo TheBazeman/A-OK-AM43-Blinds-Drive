@@ -8,29 +8,29 @@ This python3 script provides an <number 0-100>, Open, Close and CheckStatus comm
 Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the "inifilepath" parameter in the script and the path in below example service file. Otherwise it cannot find the ini file with your blind mac address(es) and the service wont start.
 
 
-I have created a service for it with the following (use the raw view to copy):
-sudo tee -a /lib/systemd/system/AOK-AM43.service <<_EOF_
-[Unit]
-Description = AOK-AM43 Web service
-After = network-online.target
-Wants = network-online.target
-
-[Service]
-User = root
-Group = root
-Type = simple
-ExecStart = /usr/bin/python3 /A-OK_AM43_Blind_Drive/AOK-AM43.py
-Restart = on-failure
-RestartSec = 30
-
-[Install]
-WantedBy = multi-user.target
-_EOF_
-
-systemctl enable AOK-AM43.service
-systemctl daemon-reload
-service AOK-AM43 status
-
+I have created a service for it with the following (use the raw view to copy):<br>
+sudo tee -a /lib/systemd/system/AOK-AM43.service <<_EOF_<br>
+[Unit]<br>
+Description = AOK-AM43 Web service<br>
+After = network-online.target<br>
+Wants = network-online.target<br>
+<br>
+[Service]<br>
+User = root<br>
+Group = root<br>
+Type = simple<br>
+ExecStart = /usr/bin/python3 /A-OK_AM43_Blind_Drive/AOK-AM43.py<br>
+Restart = on-failure<br>
+RestartSec = 30<br>
+<br>
+[Install]<br>
+WantedBy = multi-user.target<br>
+_EOF_<br>
+<br>
+systemctl enable AOK-AM43.service<br>
+systemctl daemon-reload<br>
+service AOK-AM43 status<br>
+<br>
 
 To Do list (time is not my best friend, so be patient please):
 - MQTT support
