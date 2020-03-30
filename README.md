@@ -7,6 +7,8 @@ This python3 script provides an <number 0-100>, Open, Close and CheckStatus comm
 
 Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the "inifilepath" parameter in the script and the path in below example service file. Otherwise it cannot find the ini file with your blind mac address(es) and the service wont start.
 
+How to get the MAC Addresses:<br>
+Give the blind controller(s) a proper name in the app on your phone, exit the app and then run “blescan” on your raspberry. The MAC addresses should be visible for all your blind controllers within range.<br>
 
 I have created a service for it with the following:<br>
 sudo tee -a /lib/systemd/system/AOK-AM43.service <<_EOF_<br>
