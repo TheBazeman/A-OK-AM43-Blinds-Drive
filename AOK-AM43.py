@@ -28,6 +28,7 @@ import datetime
 from retrying import retry
 import json
 
+
 #Variables
 config = configparser.ConfigParser() #Read ini file for meters
 inifilepath = "/A-OK_AM43_Blind_Drive/AOK-AM43.ini"
@@ -46,6 +47,7 @@ IdPosition3 = 0xa9  #not used in code yet
 BatteryPct = None
 LightPct = None
 PositionPct = None
+
 
 #Check and read inifile
 if (os.path.exists(inifilepath)):
@@ -70,8 +72,8 @@ class AM43Delegate(btle.DefaultDelegate):
             PositionPct = data[5]
         elif (data[1] == IdLight):
             global LightPct
-            #print("Light: " + str(data[3]) + "%")
-            LightPct = data[4]
+            #print("Light: " + str(data[4] * 12.5) + "%")
+            LightPct = data[4] * 12.5
         else:
             print("Unknown identifier notification recieved: " + str(data[1:2]))
 
@@ -135,7 +137,7 @@ def ScanForBTLEDevices():
         raise ValueError(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Not all AM43 Blinds Controllers are found on BTLE network, restarting bluetooth stack and check again....")
 
 
-@retry(stop_max_attempt_number=3,wait_fixed=2000)
+@retry(stop_max_attempt_number=10,wait_fixed=2000)
 def ConnectBTLEDevice(AM43BlindsDeviceMacAddress,AM43BlindsDevice):        
     try:
         print(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") + " Connecting to " + AM43BlindsDeviceMacAddress + ", " + AM43BlindsDevice.capitalize() + "...", flush=True)
