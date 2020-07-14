@@ -71,7 +71,7 @@ class AM43Delegate(btle.DefaultDelegate):
         elif (data[1] == IdLight):
             global LightPct
             #print("Light: " + str(data[3]) + "%")
-            LightPct = data[3]
+            LightPct = data[4]
         else:
             print("Unknown identifier notification recieved: " + str(data[1:2]))
 
