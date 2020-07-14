@@ -5,7 +5,10 @@ Configure the AM43 Blinds Drive with the app on your phone. Make sure you set th
 
 This python3 script provides an <number 0-100>, Open, Close and CheckStatus command. It returns a JSON string with all info.
 
-Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the "inifilepath" parameter in the script and the path in below example service file. Otherwise it cannot find the ini file with your blind mac address(es) and the service wont start.
+Install the script and ini file in path "/A-OK_AM43_Blind_Drive/" or change the "inifilepath" parameter in the script and the path in below example service file. Otherwise it cannot find the ini file with your blind mac address(es) and the service wont start. Run the script with Python3! If you get the following error you are probably running the script with Python 2:<br>
+  File "AOK-AM43.py", line 57<br>
+    print("ERROR: Cannot find ini file: " + inifilepath + "! Correct the path in this script or put the ini file in the correct directory. Exiting", flush=True)<br>
+                                                                                                                                                          ^<br>
 
 How to get the MAC Addresses:<br>
 Give the blind controller(s) a proper name in the app on your phone, exit the app and then run “blescan” on your raspberry. The MAC addresses should be visible for all your blind controllers within range.<br>
