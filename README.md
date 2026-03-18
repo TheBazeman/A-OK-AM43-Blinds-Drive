@@ -37,9 +37,6 @@ systemctl daemon-reload<br>
 service AOK-AM43 status<br>
 <br>
 
-To Do list (time is not my best friend, so be patient please):
-- MQTT support
-
 
 Created a simple python script with a Flask Webservice which you can provide a <number 0-100> (set percentage yourself), "Open" (0%), Close (100%) or CheckStatus command so you can give youre Home Automation access to them. BLE seems not too reliable so I had to write some more code for fault handling.
 
@@ -65,3 +62,5 @@ https://nl.aliexpress.com/item/4000025499519.html
 
 
 -Special thanks to Richard Taylor for providing me several pieces of code to get to this-
+
+update 2023: I don't have the devices anymore and I saw that there are Zigbee versions available of this one, so no development from my side anymore for this device
